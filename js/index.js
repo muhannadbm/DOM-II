@@ -14,7 +14,7 @@ setTimeout(function() {
 
 }, false);
 
-//nav items manipulating
+//nav items prevent default
 const navitems = document.querySelectorAll('.nav-link')
 Array.from(navitems).forEach(el => { 
     el.addEventListener('click', function(event) {
@@ -27,9 +27,9 @@ Array.from(navitems).forEach(el => {
 Array.from(document.all).forEach(el => {
     el.addEventListener('copy', function(event){
         const selection = document.getSelection();
-        event.clipboardData.setData('text/plain', selection.toString());
         event.preventDefault();
-        alert('you copied some data succesfully ')
+        event.stopImmediatePropagation();
+        alert('you copied: ' + selection)
         
     })
 })
@@ -72,7 +72,7 @@ myimg.addEventListener('wheel',function(event){
 
 //load
 window.addEventListener('load', function(event){
-    alert('Welcome to my fun page!, to change page to boat version move wheel on the bus image, and Dont forget to write your name on the keyboard !, to enter the race(that you will definitely lose) keep scrolling :)')
+    alert('Welcome to my fun page!')
 
 })
 
@@ -119,3 +119,11 @@ input.appendChild(parag);
   input.addEventListener('dblclick', function(event){
     event.target.style.display = 'none'
   });
+
+
+//modal close
+const mymodal = document.querySelector('.modal')
+const mybutton = document.querySelector('#close')
+mybutton.addEventListener('click', function(event){
+    mymodal.classList.add('off')
+})
